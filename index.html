@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatima's Heart Gift · Stars & Hearts</title>
+    <title>Fatima's Heart Garden · Valentine</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #0a0f1e;
-            color: white;
+            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
+            background: linear-gradient(145deg, #2b1a2e, #1f1222);
+            color: #ffe9f4;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -21,57 +22,73 @@
             overflow: hidden;
             position: relative;
         }
-        .floating-elements {
+
+        /* Floating flowers and petals */
+        .floating-garden {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 2;
+            z-index: 1;
             overflow: hidden;
         }
-        .heart-float, .star-float {
+
+        .flower, .petal {
             position: absolute;
-            color: rgba(255, 105, 180, 0.7);
-            font-size: 1.8rem;
+            font-size: 2rem;
             user-select: none;
-            animation: floatAround 18s infinite linear;
-            filter: drop-shadow(0 0 8px #ff4d6d);
+            animation: floatFlower 20s infinite linear;
+            filter: drop-shadow(0 0 10px #ffa5c3);
+            opacity: 0.6;
         }
-        .star-float {
-            color: rgba(255, 215, 0, 0.8);
-            font-size: 1.4rem;
-            text-shadow: 0 0 12px gold;
-            animation: twinkleFloat 14s infinite alternate;
+
+        .petal {
+            font-size: 1.2rem;
+            animation: floatPetal 15s infinite ease-in-out;
         }
-        @keyframes floatAround {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-20vh) translateX(30px) rotate(360deg); opacity: 0; }
+
+        @keyframes floatFlower {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
-        @keyframes twinkleFloat {
-            0% { transform: translateY(80vh) scale(0.8); opacity: 0.3; }
-            50% { transform: translateY(40vh) scale(1.2); opacity: 1; text-shadow: 0 0 20px gold; }
-            100% { transform: translateY(-10vh) scale(0.9); opacity: 0.2; }
+
+        @keyframes floatPetal {
+            0% { transform: translateY(110vh) translateX(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.9; }
+            100% { transform: translateY(-20vh) translateX(50px) rotate(180deg); opacity: 0; }
         }
+
+        /* Soft background glow */
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 192, 203, 0.2), transparent 70%);
+            z-index: 0;
+        }
+
         #binary-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.15;
+            opacity: 0.05;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
         }
+
         .container {
             position: relative;
             z-index: 10;
             text-align: center;
             width: 100%;
         }
+
+        /* ========== HEART GIFT BOX ========== */
         .gift-wrapper {
             position: relative;
             display: inline-block;
@@ -79,145 +96,184 @@
             text-align: center;
             z-index: 20;
             animation: floatHeart 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 25px #ffb3c6);
+            filter: drop-shadow(0 0 30px #ff80a5);
         }
+
         .heart-box {
             position: relative;
-            width: 300px;
-            height: 270px;
-            background: linear-gradient(145deg, #ff4d6d, #c9184a);
+            width: 320px;
+            height: 290px;
+            background: linear-gradient(145deg, #ff99bb, #ff4d88);
             transform: rotate(-45deg);
             border-radius: 50% 50% 0 50%;
-            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.8), 0 0 50px #ffb3c6;
+            box-shadow: 0 20px 40px rgba(255, 77, 136, 0.8), 0 0 60px #ffb3c6;
             margin-bottom: 20px;
+            transition: all 0.3s;
+            border: 2px solid #ffe4ec;
         }
-        .heart-box::before, .heart-box::after {
+
+        .heart-box::before,
+        .heart-box::after {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 270px;
+            width: 320px;
+            height: 290px;
             background: inherit;
             border-radius: 50% 50% 0 50%;
             box-shadow: inherit;
         }
+
         .heart-box::before {
-            top: -135px;
+            top: -145px;
             left: 0;
             border-radius: 50% 50% 50% 0;
         }
+
         .heart-box::after {
-            left: 135px;
+            left: 145px;
             top: 0;
             border-radius: 50% 0 50% 50%;
         }
+
         .heart-ribbon {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(-45deg);
-            width: 120px;
-            height: 30px;
-            background: #ffb3c6;
-            border-radius: 20px;
+            width: 130px;
+            height: 35px;
+            background: #ffe4f0;
+            border-radius: 30px;
             box-shadow: 0 0 30px #fff;
             z-index: 25;
+            border: 1px solid #ff99bb;
         }
-        .heart-ribbon::before, .heart-ribbon::after {
+
+        .heart-ribbon::before,
+        .heart-ribbon::after {
             content: '';
             position: absolute;
-            width: 30px;
-            height: 120px;
-            background: #ffb3c6;
-            border-radius: 20px;
+            width: 35px;
+            height: 130px;
+            background: #ffe4f0;
+            border-radius: 30px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             box-shadow: 0 0 30px #fff;
+            border: 1px solid #ff99bb;
         }
+
         .heart-ribbon::before { transform: translate(-50%, -50%) rotate(90deg); }
         .heart-ribbon::after { transform: translate(-50%, -50%) rotate(0deg); }
-        .flower {
+
+        /* Flowers around gift */
+        .garden-flower {
             position: absolute;
-            font-size: 2.5rem;
-            filter: drop-shadow(0 0 15px #ffb3c6);
-            animation: sway 4s ease-in-out infinite;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 0 20px #ffb6d9);
+            animation: sway 5s ease-in-out infinite;
             z-index: 15;
         }
-        .flower1 { top: -40px; left: -40px; animation-delay: 0s; }
-        .flower2 { top: -30px; right: -30px; animation-delay: 0.5s; }
-        .flower3 { bottom: -30px; left: -20px; animation-delay: 1s; }
-        .flower4 { bottom: -20px; right: -40px; animation-delay: 1.5s; }
-        .flower5 { top: 20px; left: -60px; animation-delay: 2s; }
-        .flower6 { top: 10px; right: -60px; animation-delay: 2.5s; }
+
+        .garden1 { top: -50px; left: -50px; animation-delay: 0s; }
+        .garden2 { top: -40px; right: -40px; animation-delay: 0.7s; }
+        .garden3 { bottom: -40px; left: -30px; animation-delay: 1.2s; }
+        .garden4 { bottom: -30px; right: -50px; animation-delay: 1.9s; }
+        .garden5 { top: 30px; left: -70px; animation-delay: 2.3s; }
+        .garden6 { top: 20px; right: -70px; animation-delay: 2.8s; }
+
         @keyframes sway {
             0% { transform: rotate(0deg); }
-            50% { transform: rotate(15deg); }
+            50% { transform: rotate(20deg); }
             100% { transform: rotate(0deg); }
         }
+
         @keyframes floatHeart {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-25px); }
             100% { transform: translateY(0); }
         }
+
         .gift-wrapper.open {
-            animation: openHeart 0.8s forwards;
+            animation: openHeart 0.9s forwards;
         }
+
         @keyframes openHeart {
             0% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.2); opacity: 0.8; }
             100% { transform: scale(0); opacity: 0; }
         }
+
         .gift-message {
-            color: #ffb3c6;
-            font-size: 1.3rem;
+            color: #ffe9f4;
+            font-size: 1.5rem;
             margin-top: 30px;
-            text-shadow: 0 0 15px #ff4d6d;
+            text-shadow: 0 0 20px #ff80a5;
             position: relative;
             z-index: 30;
-            background: rgba(10,15,30,0.4);
-            padding: 8px 20px;
+            background: rgba(43, 26, 46, 0.6);
+            padding: 10px 25px;
             border-radius: 50px;
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(5px);
             display: inline-block;
+            border: 1px solid #ff99bb;
+            font-family: 'Brush Script MT', cursive;
         }
+
+        /* ========== ICONS CONTAINER ========== */
         .icons-container {
             display: none;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            max-width: 1100px;
+            gap: 25px;
+            max-width: 1200px;
             margin: 40px auto 0;
-            padding: 20px;
+            padding: 25px;
+            background: rgba(43, 26, 46, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            border: 2px solid #ff99bb;
+            box-shadow: 0 0 50px #ff80a5;
         }
+
         .icon-item {
-            width: 120px;
-            height: 120px;
-            background: rgba(255,255,255,0.1);
-            border: 2px solid #ff4d6d;
-            border-radius: 20px;
+            width: 130px;
+            height: 130px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #ff99bb;
+            border-radius: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 20px #ff4d6d;
+            transition: 0.4s;
+            box-shadow: 0 0 25px #ff80a5;
             backdrop-filter: blur(4px);
         }
+
         .icon-item:hover {
-            background: #ff4d6d;
-            transform: scale(1.1);
-            box-shadow: 0 0 40px #ffb3c6;
+            background: #ff4d88;
+            transform: scale(1.15) rotate(3deg);
+            box-shadow: 0 0 50px #ffb3c6;
+            border-color: #ffe4f0;
         }
+
         .icon-item span {
-            font-size: 3rem;
+            font-size: 3.2rem;
+            filter: drop-shadow(0 0 10px #fff);
         }
+
         .icon-item p {
-            font-size: 0.9rem;
-            margin-top: 5px;
+            font-size: 1rem;
+            margin-top: 8px;
             font-weight: bold;
-            text-align: center;
+            color: #ffe9f4;
+            text-shadow: 0 0 10px #ff4d88;
         }
+
+        /* ========== MODAL STYLES ========== */
         .modal {
             display: none;
             position: fixed;
@@ -225,113 +281,131 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(12px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
+
         .modal-card {
-            background: #1a1f35;
-            border: 2px solid #ff4d6d;
-            border-radius: 30px;
-            padding: 30px;
-            max-width: 600px;
+            background: rgba(43, 26, 46, 0.9);
+            border: 3px solid #ff99bb;
+            border-radius: 50px;
+            padding: 35px;
+            max-width: 650px;
             max-height: 80vh;
             overflow-y: auto;
-            color: white;
-            box-shadow: 0 0 60px #ff4d6d;
+            color: #ffe9f4;
+            box-shadow: 0 0 100px #ff4d88;
             position: relative;
             width: 90%;
+            backdrop-filter: blur(10px);
         }
+
         .close-modal {
             position: absolute;
             top: 15px;
-            right: 20px;
-            font-size: 2.5rem;
+            right: 25px;
+            font-size: 3rem;
             cursor: pointer;
-            color: #ff4d6d;
+            color: #ff99bb;
+            transition: 0.2s;
         }
+
         .close-modal:hover {
-            color: #ffb3c6;
+            color: #fff;
+            transform: scale(1.2);
         }
+
         h2 {
-            color: #ffb3c6;
+            color: #ffe9f4;
             margin-bottom: 20px;
-            border-bottom: 2px solid #ff4d6d;
+            border-bottom: 3px solid #ff99bb;
             padding-bottom: 10px;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2.5rem;
+            text-shadow: 0 0 20px #ff80a5;
         }
+
         .reason-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
+
         .reason-item {
-            background: rgba(255,77,109,0.2);
+            background: rgba(255, 77, 136, 0.2);
             padding: 8px;
             border-radius: 8px;
             font-size: 0.95rem;
+            border: 1px solid #ff99bb;
         }
+
         .playlist-item {
             padding: 8px;
-            border-bottom: 1px solid #ff4d6d;
+            border-bottom: 1px solid #ff99bb;
         }
+
         .floating-signature {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 18px;
+            background: rgba(43,26,46,0.6);
+            padding: 8px 20px;
             border-radius: 40px;
-            border: 1px solid #ff4d6d;
-            color: #ffb3c6;
+            border: 2px solid #ff99bb;
+            color: #ffe9f4;
             z-index: 200;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(5px);
+            font-size: 1.2rem;
+            font-family: 'Brush Script MT', cursive;
         }
+
         .music-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
-            background: #ff4d6d;
-            border: none;
+            background: #ff4d88;
+            border: 3px solid #ffe4f0;
             color: white;
-            font-size: 1.8rem;
+            font-size: 2rem;
             cursor: pointer;
             z-index: 200;
-            box-shadow: 0 0 30px #ff4d6d;
+            box-shadow: 0 0 30px #ff80a5;
+            transition: 0.3s;
         }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: #ff80a5;
+        }
+
         /* Quiz styles */
         .quiz-question {
             margin: 20px 0;
-            padding: 10px;
+            padding: 15px;
             background: rgba(255,255,255,0.05);
-            border-radius: 10px;
+            border-radius: 15px;
+            border: 1px solid #ff99bb;
         }
-        .quiz-question p {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
+        .quiz-question p { font-size: 1.2rem; margin-bottom: 10px; }
         .quiz-option {
             display: block;
             margin: 5px 0;
             padding: 8px 12px;
-            background: #2a2f45;
+            background: #3a2a3f;
             border-radius: 8px;
             cursor: pointer;
             transition: 0.2s;
         }
-        .quiz-option:hover {
-            background: #ff4d6d;
-        }
-        .quiz-option input {
-            margin-right: 10px;
-            accent-color: #ff4d6d;
-        }
+        .quiz-option:hover { background: #ff4d88; }
+        .quiz-option input { margin-right: 10px; accent-color: #ff4d88; }
         .quiz-submit {
-            background: #ff4d6d;
+            background: #ff4d88;
             color: white;
             border: none;
             padding: 10px 25px;
@@ -339,33 +413,48 @@
             font-size: 1.2rem;
             cursor: pointer;
             margin: 15px 0;
+            border: 1px solid #ffe4f0;
         }
-        .quiz-result {
-            font-size: 1.5rem;
-            color: #ffb3c6;
-            text-align: center;
+        .quiz-result { font-size: 1.5rem; color: #ffe9f4; text-align: center; }
+
+        /* Pulse animation for Valentine */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
+        .pulse-heart { animation: pulse 2s infinite; }
     </style>
 </head>
 <body>
+    <div class="glow"></div>
     <canvas id="binary-bg"></canvas>
-    <div class="floating-elements" id="floatingElements"></div>
-    <div class="floating-signature">💖 Meri Jann ✨</div>
+
+    <!-- Floating garden -->
+    <div class="floating-garden" id="floatingGarden"></div>
+
+    <div class="floating-signature">💖 Mubashir & Fatima 💖</div>
     <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
     <div class="container">
+        <!-- Heart gift box with flowers -->
         <div class="gift-wrapper" id="giftWrapper" onclick="openGift()">
-            <div class="heart-box" id="heartBox"><div class="heart-ribbon"></div></div>
-            <div class="flower flower1">🌸</div><div class="flower flower2">🌼</div>
-            <div class="flower flower3">🌺</div><div class="flower flower4">🌹</div>
-            <div class="flower flower5">🌷</div><div class="flower flower6">🌸</div>
-            <div class="gift-message">✨ open your heart gift ✨</div>
+            <div class="heart-box" id="heartBox">
+                <div class="heart-ribbon"></div>
+            </div>
+            <!-- Surrounding flowers -->
+            <div class="garden-flower garden1">🌸</div>
+            <div class="garden-flower garden2">🌼</div>
+            <div class="garden-flower garden3">🌺</div>
+            <div class="garden-flower garden4">🌹</div>
+            <div class="garden-flower garden5">🌷</div>
+            <div class="garden-flower garden6">🌸</div>
+            <div class="gift-message">✨ open your heart ✨</div>
         </div>
 
+        <!-- Icons container (all text-based) -->
         <div class="icons-container" id="iconsContainer">
-            <!-- New Valentine's icon first -->
             <div class="icon-item" onclick="openModal('valentine')"><span>❤️</span><p>Valentine</p></div>
-            <!-- Remaining text-based icons -->
             <div class="icon-item" onclick="openModal('letter')"><span>💌</span><p>Letter</p></div>
             <div class="icon-item" onclick="openModal('reasons')"><span>💖</span><p>Reasons</p></div>
             <div class="icon-item" onclick="openModal('promise')"><span>🤝</span><p>Promise</p></div>
@@ -386,21 +475,14 @@
     </div>
 
     <!-- Modals -->
-    <!-- Valentine Modal (new) -->
+    <!-- Valentine Modal -->
     <div class="modal" id="modal-valentine">
         <div class="modal-card" style="text-align:center;">
             <span class="close-modal" onclick="closeModal('valentine')">&times;</span>
-            <h2>💘 Happy Valentine's Day Meri Jan! 💘</h2>
-            <div style="font-size:6rem; animation: pulse 2s infinite;">❤️</div>
-            <p style="font-size:2rem; margin:20px 0;">For Mubashir & Fatima</p>
-            <p style="font-size:1.5rem;">You are my forever Valentine. I love you more every day. ❤️</p>
-            <style>
-                @keyframes pulse {
-                    0% { transform: scale(1); }
-                    50% { transform: scale(1.2); }
-                    100% { transform: scale(1); }
-                }
-            </style>
+            <h2>💘 Happy Valentine's Day! 💘</h2>
+            <div class="pulse-heart" style="font-size:8rem;">❤️</div>
+            <p style="font-size:2.2rem; margin:20px 0; font-family:'Brush Script MT', cursive;">For Mubashir & Fatima</p>
+            <p style="font-size:1.8rem;">You are my forever Valentine. I love you more every day. ❤️</p>
         </div>
     </div>
 
@@ -420,7 +502,7 @@
     <div class="modal" id="modal-playlist"><div class="modal-card"><span class="close-modal" onclick="closeModal('playlist')">&times;</span><h2>🎵 Playlist</h2><div id="playlistItems"></div></div></div>
 
     <!-- Wish Candle Modal -->
-    <div class="modal" id="modal-candle"><div class="modal-card" style="text-align:center;"><span class="close-modal" onclick="closeModal('candle')">&times;</span><h2>🕯️ Wish</h2><div class="candle" onclick="blowCandle(this)" style="font-size:6rem; cursor:pointer;">🕯️</div><div id="wishMessage" style="font-size:2rem; margin-top:20px; color:#ffb3c6;"></div></div></div>
+    <div class="modal" id="modal-candle"><div class="modal-card" style="text-align:center;"><span class="close-modal" onclick="closeModal('candle')">&times;</span><h2>🕯️ Wish</h2><div class="candle" onclick="blowCandle(this)" style="font-size:6rem; cursor:pointer;">🕯️</div><div id="wishMessage" style="font-size:2rem; margin-top:20px; color:#ffe9f4;"></div></div></div>
 
     <!-- Timeline Modal -->
     <div class="modal" id="modal-timeline"><div class="modal-card"><span class="close-modal" onclick="closeModal('timeline')">&times;</span><h2>📅 Timeline</h2><div class="content"><p><strong>💙 TikTok Pe Mulaqat</strong> – Credit TikTok, maine comment kiya</p><p><strong>📞 Pehli Call</strong> – Sunday, awaaz dil mein utar gayi</p><p><strong>🤝 Pehli Mulaqat</strong> – Monday, dil kho gaya</p><p><strong>💕 Pehli Baar "Meri Jan"</strong> – Woh surprised hui, pasand aaya</p><p><strong>🏨 Indus Hotel</strong> – Woh pal kabhi nahi bhool sakte</p></div></div></div>
@@ -438,13 +520,239 @@
     <div class="modal" id="modal-quiz"><div class="modal-card"><span class="close-modal" onclick="closeModal('quiz')">&times;</span><h2>❓ How well do you know Mubashir?</h2><div id="quizContainer"></div></div></div>
 
     <!-- Stars Modal -->
-    <div class="modal" id="modal-constellation"><div class="modal-card"><span class="close-modal" onclick="closeModal('constellation')">&times;</span><h2>✨ Stars</h2><canvas id="constellationCanvas" width="400" height="200" style="width:100%; background:#000; border-radius:20px;"></canvas><p style="text-align:center; margin-top:10px;">6 June 2004</p></div></div>
+    <div class="modal" id="modal-constellation"><div class="modal-card"><span class="close-modal" onclick="closeModal('constellation')">&times;</span><h2>✨ Stars</h2><canvas id="constellationCanvas" width="400" height="200" style="width:100%; background:#2b1a2e; border-radius:20px; border:2px solid #ff99bb;"></canvas><p style="text-align:center; margin-top:10px;">6 June 2004</p></div></div>
 
     <!-- Friends Modal -->
     <div class="modal" id="modal-friend"><div class="modal-card"><span class="close-modal" onclick="closeModal('friend')">&times;</span><h2>👥 Friends</h2><div class="content" style="text-align:center; font-size:2rem;"><p>🤝 I am your Forever friend 🤝</p><p style="font-size:1.2rem; margin-top:20px;">Always and forever, no matter what.</p></div></div></div>
 
     <!-- Heart Modal -->
-    <div class="modal" id="modal-heart"><div class="modal-card"><span class="close-modal" onclick="closeModal('heart')">&times;</span><h2>❤️ Heart</h2><div class="content" style="font-size:2rem; text-align:center;"><p>I ❤️ U Meri Fatima</p></div></div></div>
+    <div class="modal" id="modal-heart"><div class="modal-card"><span class="close-modal" onclick="closeModal('heart')">&times;</span><h2>❤️ Heart</h2><div class="content" style="font-size:2.5rem; text-align:center;"><p>I ❤️ U Meri Fatima</p></div></div></div>
 
     <!-- Note Modal -->
-    <div class="modal" id="modal-signature"><div class="modal-car
+    <div class="modal" id="modal-signature"><div class="modal-card"><span class="close-modal" onclick="closeModal('signature')">&times;</span><h2>✍️ Note</h2><div class="content" style="font-size:2rem; text-align:center;">I Love Meri Jann 😘</div></div></div>
+
+    <!-- There is Something Modal -->
+    <div class="modal" id="modal-last"><div class="modal-card"><span class="close-modal" onclick="closeModal('last')">&times;</span><h2>There is Something</h2><div class="content" style="font-size:2rem; text-align:center;"><p>Choro koi bat niii 😔</p></div></div></div>
+
+    <script>
+        // ========== BINARY BACKGROUND ==========
+        const canvas = document.getElementById('binary-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const binary = '01';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+        function drawBinary() {
+            ctx.fillStyle = 'rgba(43,26,46,0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ff99bb';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                let text = binary[Math.floor(Math.random() * binary.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawBinary, 50);
+
+        // ========== FLOATING GARDEN ==========
+        function createGarden() {
+            const garden = document.getElementById('floatingGarden');
+            garden.innerHTML = '';
+            const flowers = ['🌸', '🌼', '🌺', '🌹', '🌷', '🌸', '🌻', '🌞', '💐', '🌸'];
+            for (let i = 0; i < 50; i++) {
+                const el = document.createElement('div');
+                const isFlower = Math.random() > 0.3;
+                el.className = isFlower ? 'flower' : 'petal';
+                el.textContent = isFlower ? flowers[Math.floor(Math.random() * flowers.length)] : '🌱';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDelay = Math.random() * 15 + 's';
+                el.style.animationDuration = (15 + Math.random() * 20) + 's';
+                el.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+                garden.appendChild(el);
+            }
+        }
+        createGarden();
+        setInterval(createGarden, 25000);
+
+        // ========== MUSIC ==========
+        let music = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        music.loop = true;
+        function toggleMusic() {
+            if (music.paused) { music.play(); document.getElementById('musicBtn').innerHTML = '⏸️'; }
+            else { music.pause(); document.getElementById('musicBtn').innerHTML = '🎵'; }
+        }
+
+        // ========== OPEN GIFT ==========
+        function openGift() {
+            const wrapper = document.getElementById('giftWrapper');
+            if (!wrapper) return;
+            wrapper.classList.add('open');
+            setTimeout(() => {
+                wrapper.style.display = 'none';
+                document.getElementById('iconsContainer').style.display = 'flex';
+                loadReasons();
+                loadPlaylist();
+                loadOpenWhen();
+                loadQuiz();
+                drawConstellationCanvas();
+            }, 800);
+        }
+
+        // Backup click listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const wrapper = document.getElementById('giftWrapper');
+            if (wrapper) wrapper.addEventListener('click', openGift);
+        });
+
+        // ========== MODAL FUNCTIONS ==========
+        function openModal(id) {
+            document.getElementById('modal-' + id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById('modal-' + id).style.display = 'none';
+        }
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+        };
+
+        // ========== DYNAMIC CONTENT ==========
+        function loadReasons() {
+            const list = document.getElementById('reasonsList');
+            if (!list) return;
+            const reasons = [
+                'Your smile that lights up my world', 'The way you laugh — pure magic',
+                'Your eyes — I get lost in them', 'Your voice — it calms me down',
+                'The way you say "Meri Jan"', 'You understand me without words',
+                'You make ordinary days special', 'You believe in me when I doubt',
+                'You feel like home', 'You complete me', 'The way you get shy',
+                'Your random texts that make my day', 'How you care about small things',
+                'Your stubbornness (I secretly love it)', 'The way you say my name',
+                'You accepted me for who I am', 'You\'re my peace in chaos',
+                'My first thought in the morning', 'My last thought at night',
+                'You made me believe in love', 'Your eyes sparkle when happy',
+                'You know when something is wrong', 'The sounds you make when excited',
+                'Your hugs — they fix everything', 'You exist. That\'s enough.'
+            ];
+            list.innerHTML = '';
+            reasons.forEach((r, i) => {
+                let div = document.createElement('div');
+                div.className = 'reason-item';
+                div.textContent = `${i+1}. ${r}`;
+                list.appendChild(div);
+            });
+        }
+
+        function loadPlaylist() {
+            const cont = document.getElementById('playlistItems');
+            if (!cont) return;
+            cont.innerHTML = '';
+            const songs = ['Ishq Mubarak - Arijit Singh', 'Tum Hi Ho - Arijit Singh', 'Raabta - Arikit Singh', 'Humsafar - Akhil Sachdeva', 'Tera Zikr - Darshan Raval'];
+            songs.forEach((s, i) => {
+                let div = document.createElement('div');
+                div.className = 'playlist-item';
+                div.textContent = `${i+1}. ${s}`;
+                cont.appendChild(div);
+            });
+        }
+
+        function loadOpenWhen() {
+            const cont = document.getElementById('openWhenList');
+            if (!cont) return;
+            cont.innerHTML = '';
+            const letters = [
+                '💕 Open When You Miss Me: I miss you too... sending a hug.',
+                '🥺 Open When You\'re Sad: Wipe those tears, I\'m here.',
+                '😊 Open When You\'re Happy: Keep smiling forever.',
+                '🌙 Open When You Can\'t Sleep: Imagine my arms around you.',
+                '🫂 Open When You\'re Angry At Me: Let\'s talk, I love you.',
+                '💖 Open When You Need to Feel Loved: You are my everything.'
+            ];
+            letters.forEach(l => {
+                let p = document.createElement('p');
+                p.textContent = l;
+                p.style.margin = '10px 0';
+                cont.appendChild(p);
+            });
+        }
+
+        // ========== QUIZ ==========
+        const quizQuestions = [
+            { question: "What is my favourite colour?", options: ["Black", "Blue", "Red", "White"], answer: 0 },
+            { question: "What day of the week did we first meet?", options: ["Monday", "Tuesday", "Friday", "Sunday"], answer: 0 },
+            { question: "What is our special place?", options: ["Indus Hotel", "Beach", "Park", "Restaurant"], answer: 0 },
+            { question: "When is my birthday?", options: ["6 June 2004", "4 March 2004", "6 June 2005", "4 March 2005"], answer: 0 },
+            { question: "What do I always say to you?", options: ["I love you", "Meri Jan", "Take care", "Miss you"], answer: 0 },
+            { question: "What was the first thing I noticed about you?", options: ["Your smile", "Your eyes", "Your voice", "Your personality"], answer: 1 }
+        ];
+
+        function loadQuiz() {
+            const container = document.getElementById('quizContainer');
+            if (!container) return;
+            let html = '<form id="quizForm">';
+            quizQuestions.forEach((q, idx) => {
+                html += `<div class="quiz-question"><p>${idx+1}. ${q.question}</p>`;
+                q.options.forEach((opt, optIdx) => {
+                    html += `<label class="quiz-option"><input type="radio" name="q${idx}" value="${optIdx}"> ${opt}</label>`;
+                });
+                html += '</div>';
+            });
+            html += '</form><button class="quiz-submit" onclick="submitQuiz()">Submit Answers</button><div id="quizResult" class="quiz-result"></div>';
+            container.innerHTML = html;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            for (let i = 0; i < quizQuestions.length; i++) {
+                const radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked && j == quizQuestions[i].answer) {
+                        score++;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('quizResult').innerHTML = `You got ${score} out of ${quizQuestions.length} correct! ❤️`;
+        }
+
+        function drawConstellationCanvas() {
+            const c = document.getElementById('constellationCanvas');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctx.fillStyle = 'white';
+            for (let i = 0; i < 50; i++) ctx.fillRect(Math.random() * c.width, Math.random() * c.height, 2, 2);
+            ctx.strokeStyle = '#ff99bb';
+            ctx.beginPath();
+            ctx.moveTo(200, 50);
+            ctx.quadraticCurveTo(300, 150, 200, 150);
+            ctx.stroke();
+        }
+
+        function blowCandle(el) {
+            el.innerHTML = '💨';
+            document.getElementById('wishMessage').innerHTML = 'Allah Tumhain Hamesha Muskarata Rkhy meri jan ✨';
+        }
+
+        function updateCountdown() {
+            const bday = new Date('March 4, 2025').getTime();
+            const now = new Date().getTime();
+            const diff = bday - now;
+            if (diff > 0) {
+                let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById('countdownDisplay').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+            } else {
+                document.getElementById('countdownDisplay').innerHTML = '🎉 It\'s her birthday! 🎉';
+            }
+        }
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
