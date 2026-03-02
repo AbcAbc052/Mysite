@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatima's Heart Garden · Valentine</title>
+    <title>Fatima's Enchanted Garden · Valentine</title>
+    <!-- Google Fonts for beautiful typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +14,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
+            font-family: 'Dancing Script', cursive, sans-serif;
             background: linear-gradient(145deg, #2b1a2e, #1f1222);
             color: #ffe9f4;
             height: 100vh;
@@ -23,7 +25,6 @@
             position: relative;
         }
 
-        /* Floating flowers and petals */
         .floating-garden {
             position: absolute;
             top: 0;
@@ -61,7 +62,6 @@
             100% { transform: translateY(-20vh) translateX(50px) rotate(180deg); opacity: 0; }
         }
 
-        /* Soft background glow */
         .glow {
             position: absolute;
             width: 100%;
@@ -88,7 +88,7 @@
             width: 100%;
         }
 
-        /* ========== HEART GIFT BOX ========== */
+        /* ========== EXTRAORDINARY HEART GIFT BOX ========== */
         .gift-wrapper {
             position: relative;
             display: inline-block;
@@ -96,41 +96,47 @@
             text-align: center;
             z-index: 20;
             animation: floatHeart 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px #ff80a5);
+            filter: drop-shadow(0 0 40px #ff80a5);
         }
 
         .heart-box {
             position: relative;
-            width: 320px;
-            height: 290px;
+            width: 340px;
+            height: 310px;
             background: linear-gradient(145deg, #ff99bb, #ff4d88);
             transform: rotate(-45deg);
             border-radius: 50% 50% 0 50%;
-            box-shadow: 0 20px 40px rgba(255, 77, 136, 0.8), 0 0 60px #ffb3c6;
+            box-shadow: 0 20px 40px rgba(255, 77, 136, 0.8), 0 0 80px #ffb3c6, 0 0 120px rgba(255, 105, 180, 0.5);
             margin-bottom: 20px;
             transition: all 0.3s;
-            border: 2px solid #ffe4ec;
+            border: 3px solid #ffe4ec;
+            animation: sparkle 2s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { box-shadow: 0 20px 40px rgba(255, 77, 136, 0.8), 0 0 80px #ffb3c6, 0 0 120px rgba(255, 105, 180, 0.5); }
+            100% { box-shadow: 0 20px 60px rgba(255, 77, 136, 1), 0 0 120px #ffd9e6, 0 0 180px rgba(255, 182, 193, 0.8); }
         }
 
         .heart-box::before,
         .heart-box::after {
             content: '';
             position: absolute;
-            width: 320px;
-            height: 290px;
+            width: 340px;
+            height: 310px;
             background: inherit;
             border-radius: 50% 50% 0 50%;
             box-shadow: inherit;
         }
 
         .heart-box::before {
-            top: -145px;
+            top: -155px;
             left: 0;
             border-radius: 50% 50% 50% 0;
         }
 
         .heart-box::after {
-            left: 145px;
+            left: 155px;
             top: 0;
             border-radius: 50% 0 50% 50%;
         }
@@ -140,48 +146,69 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(-45deg);
-            width: 130px;
-            height: 35px;
+            width: 140px;
+            height: 40px;
             background: #ffe4f0;
             border-radius: 30px;
-            box-shadow: 0 0 30px #fff;
+            box-shadow: 0 0 40px #fff;
             z-index: 25;
-            border: 1px solid #ff99bb;
+            border: 2px solid #ff99bb;
         }
 
         .heart-ribbon::before,
         .heart-ribbon::after {
             content: '';
             position: absolute;
-            width: 35px;
-            height: 130px;
+            width: 40px;
+            height: 140px;
             background: #ffe4f0;
             border-radius: 30px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 30px #fff;
-            border: 1px solid #ff99bb;
+            box-shadow: 0 0 40px #fff;
+            border: 2px solid #ff99bb;
         }
 
         .heart-ribbon::before { transform: translate(-50%, -50%) rotate(90deg); }
         .heart-ribbon::after { transform: translate(-50%, -50%) rotate(0deg); }
 
-        /* Flowers around gift */
+        /* Sparkling dots around the heart */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 20px gold;
+            z-index: 30;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        .sparkle1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .sparkle2 { top: 60%; right: 15%; animation-delay: 0.5s; }
+        .sparkle3 { bottom: 20%; left: 30%; animation-delay: 1s; }
+        .sparkle4 { bottom: 40%; right: 25%; animation-delay: 1.5s; }
+
+        @keyframes twinkle {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.5); opacity: 1; }
+        }
+
         .garden-flower {
             position: absolute;
-            font-size: 2.8rem;
+            font-size: 3rem;
             filter: drop-shadow(0 0 20px #ffb6d9);
             animation: sway 5s ease-in-out infinite;
             z-index: 15;
         }
 
-        .garden1 { top: -50px; left: -50px; animation-delay: 0s; }
-        .garden2 { top: -40px; right: -40px; animation-delay: 0.7s; }
-        .garden3 { bottom: -40px; left: -30px; animation-delay: 1.2s; }
-        .garden4 { bottom: -30px; right: -50px; animation-delay: 1.9s; }
-        .garden5 { top: 30px; left: -70px; animation-delay: 2.3s; }
-        .garden6 { top: 20px; right: -70px; animation-delay: 2.8s; }
+        .garden1 { top: -60px; left: -60px; animation-delay: 0s; }
+        .garden2 { top: -50px; right: -50px; animation-delay: 0.7s; }
+        .garden3 { bottom: -50px; left: -40px; animation-delay: 1.2s; }
+        .garden4 { bottom: -40px; right: -60px; animation-delay: 1.9s; }
+        .garden5 { top: 40px; left: -80px; animation-delay: 2.3s; }
+        .garden6 { top: 30px; right: -80px; animation-delay: 2.8s; }
 
         @keyframes sway {
             0% { transform: rotate(0deg); }
@@ -191,7 +218,7 @@
 
         @keyframes floatHeart {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-25px); }
+            50% { transform: translateY(-30px); }
             100% { transform: translateY(0); }
         }
 
@@ -207,18 +234,19 @@
 
         .gift-message {
             color: #ffe9f4;
-            font-size: 1.5rem;
-            margin-top: 30px;
-            text-shadow: 0 0 20px #ff80a5;
+            font-size: 2rem;
+            margin-top: 40px;
+            text-shadow: 0 0 20px #ff80a5, 0 0 40px #ff4d88;
             position: relative;
             z-index: 30;
             background: rgba(43, 26, 46, 0.6);
-            padding: 10px 25px;
-            border-radius: 50px;
+            padding: 12px 30px;
+            border-radius: 60px;
             backdrop-filter: blur(5px);
             display: inline-block;
-            border: 1px solid #ff99bb;
-            font-family: 'Brush Script MT', cursive;
+            border: 2px solid #ff99bb;
+            font-family: 'Great Vibes', cursive;
+            letter-spacing: 2px;
         }
 
         /* ========== ICONS CONTAINER ========== */
@@ -266,11 +294,12 @@
         }
 
         .icon-item p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-top: 8px;
             font-weight: bold;
             color: #ffe9f4;
             text-shadow: 0 0 10px #ff4d88;
+            font-family: 'Dancing Script', cursive;
         }
 
         /* ========== MODAL STYLES ========== */
@@ -323,9 +352,10 @@
             margin-bottom: 20px;
             border-bottom: 3px solid #ff99bb;
             padding-bottom: 10px;
-            font-family: 'Brush Script MT', cursive;
-            font-size: 2.5rem;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
             text-shadow: 0 0 20px #ff80a5;
+            letter-spacing: 2px;
         }
 
         .reason-list {
@@ -338,13 +368,15 @@
             background: rgba(255, 77, 136, 0.2);
             padding: 8px;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             border: 1px solid #ff99bb;
+            font-family: 'Dancing Script', cursive;
         }
 
         .playlist-item {
             padding: 8px;
             border-bottom: 1px solid #ff99bb;
+            font-size: 1.2rem;
         }
 
         .floating-signature {
@@ -358,21 +390,21 @@
             color: #ffe9f4;
             z-index: 200;
             backdrop-filter: blur(5px);
-            font-size: 1.2rem;
-            font-family: 'Brush Script MT', cursive;
+            font-size: 1.4rem;
+            font-family: 'Great Vibes', cursive;
         }
 
         .music-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 65px;
-            height: 65px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: #ff4d88;
             border: 3px solid #ffe4f0;
             color: white;
-            font-size: 2rem;
+            font-size: 2.2rem;
             cursor: pointer;
             z-index: 200;
             box-shadow: 0 0 30px #ff80a5;
@@ -392,7 +424,7 @@
             border-radius: 15px;
             border: 1px solid #ff99bb;
         }
-        .quiz-question p { font-size: 1.2rem; margin-bottom: 10px; }
+        .quiz-question p { font-size: 1.3rem; margin-bottom: 10px; font-family: 'Dancing Script', cursive; }
         .quiz-option {
             display: block;
             margin: 5px 0;
@@ -401,6 +433,7 @@
             border-radius: 8px;
             cursor: pointer;
             transition: 0.2s;
+            font-size: 1.1rem;
         }
         .quiz-option:hover { background: #ff4d88; }
         .quiz-option input { margin-right: 10px; accent-color: #ff4d88; }
@@ -410,14 +443,14 @@
             border: none;
             padding: 10px 25px;
             border-radius: 30px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             margin: 15px 0;
             border: 1px solid #ffe4f0;
+            font-family: 'Dancing Script', cursive;
         }
-        .quiz-result { font-size: 1.5rem; color: #ffe9f4; text-align: center; }
+        .quiz-result { font-size: 1.8rem; color: #ffe9f4; text-align: center; }
 
-        /* Pulse animation for Valentine */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.2); }
@@ -430,19 +463,22 @@
     <div class="glow"></div>
     <canvas id="binary-bg"></canvas>
 
-    <!-- Floating garden -->
     <div class="floating-garden" id="floatingGarden"></div>
 
     <div class="floating-signature">💖 Mubashir & Fatima 💖</div>
     <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
     <div class="container">
-        <!-- Heart gift box with flowers -->
+        <!-- Extraordinary gift box with sparkles -->
         <div class="gift-wrapper" id="giftWrapper" onclick="openGift()">
             <div class="heart-box" id="heartBox">
                 <div class="heart-ribbon"></div>
+                <!-- Sparkling dots -->
+                <div class="sparkle sparkle1"></div>
+                <div class="sparkle sparkle2"></div>
+                <div class="sparkle sparkle3"></div>
+                <div class="sparkle sparkle4"></div>
             </div>
-            <!-- Surrounding flowers -->
             <div class="garden-flower garden1">🌸</div>
             <div class="garden-flower garden2">🌼</div>
             <div class="garden-flower garden3">🌺</div>
@@ -452,7 +488,7 @@
             <div class="gift-message">✨ open your heart ✨</div>
         </div>
 
-        <!-- Icons container (all text-based) -->
+        <!-- Icons container (Timeline, Countdown, and "There is Something" removed) -->
         <div class="icons-container" id="iconsContainer">
             <div class="icon-item" onclick="openModal('valentine')"><span>❤️</span><p>Valentine</p></div>
             <div class="icon-item" onclick="openModal('letter')"><span>💌</span><p>Letter</p></div>
@@ -461,8 +497,6 @@
             <div class="icon-item" onclick="openModal('poem')"><span>📝</span><p>Poem</p></div>
             <div class="icon-item" onclick="openModal('playlist')"><span>🎵</span><p>Playlist</p></div>
             <div class="icon-item" onclick="openModal('candle')"><span>🕯️</span><p>Wish</p></div>
-            <div class="icon-item" onclick="openModal('timeline')"><span>📅</span><p>Timeline</p></div>
-            <div class="icon-item" onclick="openModal('countdown')"><span>⏳</span><p>Countdown</p></div>
             <div class="icon-item" onclick="openModal('surprise')"><span>🎁</span><p>Hidden</p></div>
             <div class="icon-item" onclick="openModal('openwhen')"><span>💌</span><p>Open When</p></div>
             <div class="icon-item" onclick="openModal('quiz')"><span>❓</span><p>Quiz</p></div>
@@ -470,7 +504,6 @@
             <div class="icon-item" onclick="openModal('friend')"><span>👥</span><p>Friends</p></div>
             <div class="icon-item" onclick="openModal('heart')"><span>❤️</span><p>Heart</p></div>
             <div class="icon-item" onclick="openModal('signature')"><span>✍️</span><p>Note</p></div>
-            <div class="icon-item" onclick="openModal('last')"><span>💬</span><p>There is Something</p></div>
         </div>
     </div>
 
@@ -479,15 +512,31 @@
     <div class="modal" id="modal-valentine">
         <div class="modal-card" style="text-align:center;">
             <span class="close-modal" onclick="closeModal('valentine')">&times;</span>
-            <h2>💘 Happy Valentine's Day! 💘</h2>
+            <h2>💘 Happy Valentines day shezadii Meri Jan 💘</h2>
             <div class="pulse-heart" style="font-size:8rem;">❤️</div>
-            <p style="font-size:2.2rem; margin:20px 0; font-family:'Brush Script MT', cursive;">For Mubashir & Fatima</p>
-            <p style="font-size:1.8rem;">You are my forever Valentine. I love you more every day. ❤️</p>
+            <p style="font-size:2rem; margin:20px 0;">I love you more every day. ❤️</p>
         </div>
     </div>
 
     <!-- Letter Modal -->
-    <div class="modal" id="modal-letter"><div class="modal-card"><span class="close-modal" onclick="closeModal('letter')">&times;</span><h2>💌 Love Letter</h2><div class="content"><p style="font-size:1.3rem;">Meri Jan pehly Pehly to Yahiii kahonga k Janan Din Mubarak Ho meri jan,<br>Tum smjh sktiii ho how can i feel for you,<br>Tum mery liye sab sy brh k Ho,<br>Is Special Din k moqay pr m yahi kahonga K Allah tumhain Khusian day,<br>Allah tumhain Hamesha mery sath Rkhy,<br>M janta hn tum kis qdr zrori ho mery liye i love you meri jan</p><p>Hey jan,<br><br>You're the melody that fills my heart with joy, the rhythm that makes life worth living. Every moment with you is a sweet serendipity, a reminder that I'm exactly where I'm meant to be.<br><br>Thanks for being my partner in crime, my confidant, and my forever crush 😊<br><br>Happy Valentine's Day, my love!</p></div></div></div>
+    <div class="modal" id="modal-letter">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal('letter')">&times;</span>
+            <h2>💌 Love Letter</h2>
+            <div class="content" style="font-size:1.3rem;">
+                <p>Meri Jan pehly Pehly to Yahiii kahonga k Valentine day Mubarak Ho meri shezadii,<br>
+                Tum smjh sktiii ho how can i feel for you,<br>
+                Tum mery liye sab sy brh k Ho,<br>
+                Is Special Din k moqay pr m yahi kahonga K Allah tumhain Khusian day,<br>
+                Allah tumhain Hamesha mery sath Rkhy,<br>
+                M janta hn tum kis qdr zrori ho mery liye i love you meri jan</p>
+                <p>Hey jan,<br><br>
+                You're the melody that fills my heart with joy, the rhythm that makes life worth living. Every moment with you is a sweet serendipity, a reminder that I'm exactly where I'm meant to be.<br><br>
+                Thanks for being my partner in crime, my confidant, and my forever crush 😊<br><br>
+                Happy Valentine's Day, my love!</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Reasons Modal -->
     <div class="modal" id="modal-reasons"><div class="modal-card"><span class="close-modal" onclick="closeModal('reasons')">&times;</span><h2>💖 25 Reasons</h2><div class="reason-list" id="reasonsList"></div></div></div>
@@ -504,19 +553,13 @@
     <!-- Wish Candle Modal -->
     <div class="modal" id="modal-candle"><div class="modal-card" style="text-align:center;"><span class="close-modal" onclick="closeModal('candle')">&times;</span><h2>🕯️ Wish</h2><div class="candle" onclick="blowCandle(this)" style="font-size:6rem; cursor:pointer;">🕯️</div><div id="wishMessage" style="font-size:2rem; margin-top:20px; color:#ffe9f4;"></div></div></div>
 
-    <!-- Timeline Modal -->
-    <div class="modal" id="modal-timeline"><div class="modal-card"><span class="close-modal" onclick="closeModal('timeline')">&times;</span><h2>📅 Timeline</h2><div class="content"><p><strong>💙 TikTok Pe Mulaqat</strong> – Credit TikTok, maine comment kiya</p><p><strong>📞 Pehli Call</strong> – Sunday, awaaz dil mein utar gayi</p><p><strong>🤝 Pehli Mulaqat</strong> – Monday, dil kho gaya</p><p><strong>💕 Pehli Baar "Meri Jan"</strong> – Woh surprised hui, pasand aaya</p><p><strong>🏨 Indus Hotel</strong> – Woh pal kabhi nahi bhool sakte</p></div></div></div>
-
-    <!-- Countdown Modal -->
-    <div class="modal" id="modal-countdown"><div class="modal-card"><span class="close-modal" onclick="closeModal('countdown')">&times;</span><h2>⏳ Countdown</h2><div class="content" style="text-align:center;"><div style="font-size:2rem;" id="countdownDisplay"></div><p style="margin-top:20px;">4 March 2004 ❤️</p></div></div></div>
-
     <!-- Hidden Surprise Modal -->
     <div class="modal" id="modal-surprise"><div class="modal-card"><span class="close-modal" onclick="closeModal('surprise')">&times;</span><h2>🎁 Hidden Surprise</h2><div class="content" style="text-align:center; font-size:1.8rem;"><p>Mubashir is always here for you Meri Jan ,I love you Mubashir diiii jan</p></div></div></div>
 
     <!-- Open When Modal -->
     <div class="modal" id="modal-openwhen"><div class="modal-card"><span class="close-modal" onclick="closeModal('openwhen')">&times;</span><h2>💌 Open When...</h2><div id="openWhenList"></div></div></div>
 
-    <!-- Quiz Modal -->
+    <!-- Quiz Modal (with birthday question) -->
     <div class="modal" id="modal-quiz"><div class="modal-card"><span class="close-modal" onclick="closeModal('quiz')">&times;</span><h2>❓ How well do you know Mubashir?</h2><div id="quizContainer"></div></div></div>
 
     <!-- Stars Modal -->
@@ -530,9 +573,6 @@
 
     <!-- Note Modal -->
     <div class="modal" id="modal-signature"><div class="modal-card"><span class="close-modal" onclick="closeModal('signature')">&times;</span><h2>✍️ Note</h2><div class="content" style="font-size:2rem; text-align:center;">I Love Meri Jann 😘</div></div></div>
-
-    <!-- There is Something Modal -->
-    <div class="modal" id="modal-last"><div class="modal-card"><span class="close-modal" onclick="closeModal('last')">&times;</span><h2>There is Something</h2><div class="content" style="font-size:2rem; text-align:center;"><p>Choro koi bat niii 😔</p></div></div></div>
 
     <script>
         // ========== BINARY BACKGROUND ==========
@@ -680,12 +720,12 @@
             });
         }
 
-        // ========== QUIZ ==========
+        // ========== QUIZ (with birthday question) ==========
         const quizQuestions = [
             { question: "What is my favourite colour?", options: ["Black", "Blue", "Red", "White"], answer: 0 },
             { question: "What day of the week did we first meet?", options: ["Monday", "Tuesday", "Friday", "Sunday"], answer: 0 },
             { question: "What is our special place?", options: ["Indus Hotel", "Beach", "Park", "Restaurant"], answer: 0 },
-            { question: "When is my birthday?", options: ["6 June 2004", "4 March 2004", "6 June 2005", "4 March 2005"], answer: 0 },
+            { question: "When is my birthday?", options: ["05 April 2005", "6 June 2004", "4 March 2005", "05 April 2004"], answer: 0 },
             { question: "What do I always say to you?", options: ["I love you", "Meri Jan", "Take care", "Miss you"], answer: 0 },
             { question: "What was the first thing I noticed about you?", options: ["Your smile", "Your eyes", "Your voice", "Your personality"], answer: 1 }
         ];
@@ -735,24 +775,8 @@
 
         function blowCandle(el) {
             el.innerHTML = '💨';
-            document.getElementById('wishMessage').innerHTML = 'Allah Tumhain Hamesha Muskarata Rkhy meri jan ✨';
+            document.getElementById('wishMessage').innerHTML = 'Allah tumhain Hamesha Khusian day Meri Jan ✨';
         }
-
-        function updateCountdown() {
-            const bday = new Date('March 4, 2025').getTime();
-            const now = new Date().getTime();
-            const diff = bday - now;
-            if (diff > 0) {
-                let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById('countdownDisplay').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
-            } else {
-                document.getElementById('countdownDisplay').innerHTML = '🎉 It\'s her birthday! 🎉';
-            }
-        }
-        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
