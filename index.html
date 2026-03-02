@@ -1,385 +1,450 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Azu Home - Interactive Mansion</title>
-
-<style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(#050816,#000);
-    color:white;
-    overflow-x:hidden;
-    transition:1s;
-}
-
-/* Day Mode */
-body.day{
-    background:linear-gradient(#87ceeb,#e0f7ff);
-    color:black;
-}
-
-/* Buttons */
-.toggle{
-    position:fixed;
-    top:20px;
-    left:20px;
-    padding:10px 20px;
-    background:gold;
-    border:none;
-    cursor:pointer;
-    border-radius:20px;
-    font-weight:bold;
-    z-index:1000;
-}
-
-.music-btn{
-    left:200px;
-}
-
-/* Weather Panel */
-.weather-panel{
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:1000;
-}
-
-.weather-panel button{
-    margin:2px;
-}
-
-/* Sky Objects */
-.sun,.moon{
-    position:absolute;
-    top:60px;
-    right:120px;
-    width:120px;
-    height:120px;
-    border-radius:50%;
-}
-
-.moon{
-    background:#eee;
-    box-shadow:0 0 60px white;
-}
-
-.sun{
-    background:orange;
-    box-shadow:0 0 80px yellow;
-    display:none;
-}
-
-body.day .moon{display:none;}
-body.day .sun{display:block;}
-
-/* Rain */
-.rain{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background-image:linear-gradient(transparent 95%, rgba(255,255,255,0.4) 95%);
-    background-size:2px 20px;
-    animation:rain 0.3s linear infinite;
-    opacity:0.3;
-    z-index:-1;
-}
-
-@keyframes rain{
-    from{background-position:0 0;}
-    to{background-position:0 20px;}
-}
-
-/* Snow */
-.snow{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background-image:radial-gradient(white 2px, transparent 2px);
-    background-size:20px 20px;
-    animation:snowFall 5s linear infinite;
-    display:none;
-    opacity:0.6;
-    z-index:-1;
-}
-
-@keyframes snowFall{
-    from{background-position:0 0;}
-    to{background-position:0 200px;}
-}
-
-/* Clouds */
-.cloud{
-    position:absolute;
-    width:200px;
-    height:60px;
-    background:white;
-    border-radius:50px;
-    top:120px;
-    animation:cloudMove 40s linear infinite;
-}
-
-@keyframes cloudMove{
-    from{left:-200px;}
-    to{left:100%;}
-}
-
-body:not(.day) .cloud{display:none;}
-
-/* Garden */
-.garden{
-    height:250px;
-    background:#0a3d0a;
-}
-
-/* House */
-.house{
-    width:700px;
-    margin:40px auto;
-    background:#1c1c1c;
-    border-radius:10px;
-    padding:20px;
-    transition:0.2s;
-    transform-style:preserve-3d;
-}
-
-body.day .house{
-    background:#fff;
-}
-
-.house-name{
-    text-align:center;
-    font-size:45px;
-    color:gold;
-    margin-bottom:20px;
-}
-
-/* Rooms */
-.rooms{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.room{
-    background:#2a2a2a;
-    padding:15px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-body.day .room{
-    background:#f0f0f0;
-}
-
-.room:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 15px cyan;
-}
-
-.room.active{
-    box-shadow:0 0 20px gold;
-}
-
-/* Modal */
-.modal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.8);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    transition:0.3s;
-}
-
-.modal.show{
-    opacity:1;
-}
-
-.modal-content{
-    background:white;
-    color:black;
-    padding:30px;
-    width:400px;
-    border-radius:10px;
-    text-align:center;
-}
-
-.close{
-    margin-top:15px;
-    padding:8px 15px;
-    cursor:pointer;
-    background:red;
-    color:white;
-    border:none;
-}
-
-/* Assistant */
-.assistant-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    z-index:1000;
-}
-
-.assistant-box{
-    position:fixed;
-    bottom:80px;
-    right:20px;
-    width:300px;
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    display:none;
-}
-
-/* Mobile */
-@media(max-width:900px){
-    .house{width:95%;}
-    .rooms{grid-template-columns:repeat(2,1fr);}
-}
-
-@media(max-width:500px){
-    .rooms{grid-template-columns:1fr;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatima's Heart Gift · Stars & Hearts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0a0f1e;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .heart-float, .star-float {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.7);
+            font-size: 1.8rem;
+            user-select: none;
+            animation: floatAround 18s infinite linear;
+            filter: drop-shadow(0 0 8px #ff4d6d);
+        }
+        .star-float {
+            color: rgba(255, 215, 0, 0.8);
+            font-size: 1.4rem;
+            text-shadow: 0 0 12px gold;
+            animation: twinkleFloat 14s infinite alternate;
+        }
+        @keyframes floatAround {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) translateX(30px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes twinkleFloat {
+            0% { transform: translateY(80vh) scale(0.8); opacity: 0.3; }
+            50% { transform: translateY(40vh) scale(1.2); opacity: 1; text-shadow: 0 0 20px gold; }
+            100% { transform: translateY(-10vh) scale(0.9); opacity: 0.2; }
+        }
+        #binary-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+        }
+        .gift-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            text-align: center;
+            z-index: 20;
+            animation: floatHeart 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px #ffb3c6);
+        }
+        .heart-box {
+            position: relative;
+            width: 300px;
+            height: 270px;
+            background: linear-gradient(145deg, #ff4d6d, #c9184a);
+            transform: rotate(-45deg);
+            border-radius: 50% 50% 0 50%;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.8), 0 0 50px #ffb3c6;
+            margin-bottom: 20px;
+        }
+        .heart-box::before, .heart-box::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 270px;
+            background: inherit;
+            border-radius: 50% 50% 0 50%;
+            box-shadow: inherit;
+        }
+        .heart-box::before {
+            top: -135px;
+            left: 0;
+            border-radius: 50% 50% 50% 0;
+        }
+        .heart-box::after {
+            left: 135px;
+            top: 0;
+            border-radius: 50% 0 50% 50%;
+        }
+        .heart-ribbon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            width: 120px;
+            height: 30px;
+            background: #ffb3c6;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #fff;
+            z-index: 25;
+        }
+        .heart-ribbon::before, .heart-ribbon::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 120px;
+            background: #ffb3c6;
+            border-radius: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px #fff;
+        }
+        .heart-ribbon::before { transform: translate(-50%, -50%) rotate(90deg); }
+        .heart-ribbon::after { transform: translate(-50%, -50%) rotate(0deg); }
+        .flower {
+            position: absolute;
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 15px #ffb3c6);
+            animation: sway 4s ease-in-out infinite;
+            z-index: 15;
+        }
+        .flower1 { top: -40px; left: -40px; animation-delay: 0s; }
+        .flower2 { top: -30px; right: -30px; animation-delay: 0.5s; }
+        .flower3 { bottom: -30px; left: -20px; animation-delay: 1s; }
+        .flower4 { bottom: -20px; right: -40px; animation-delay: 1.5s; }
+        .flower5 { top: 20px; left: -60px; animation-delay: 2s; }
+        .flower6 { top: 10px; right: -60px; animation-delay: 2.5s; }
+        @keyframes sway {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes floatHeart {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .gift-wrapper.open {
+            animation: openHeart 0.8s forwards;
+        }
+        @keyframes openHeart {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+        .gift-message {
+            color: #ffb3c6;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            text-shadow: 0 0 15px #ff4d6d;
+            position: relative;
+            z-index: 30;
+            background: rgba(10,15,30,0.4);
+            padding: 8px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(3px);
+            display: inline-block;
+        }
+        .icons-container {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding: 20px;
+        }
+        .icon-item {
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #ff4d6d;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 20px #ff4d6d;
+            backdrop-filter: blur(4px);
+        }
+        .icon-item:hover {
+            background: #ff4d6d;
+            transform: scale(1.1);
+            box-shadow: 0 0 40px #ffb3c6;
+        }
+        .icon-item span {
+            font-size: 3rem;
+        }
+        .icon-item p {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-card {
+            background: #1a1f35;
+            border: 2px solid #ff4d6d;
+            border-radius: 30px;
+            padding: 30px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            color: white;
+            box-shadow: 0 0 60px #ff4d6d;
+            position: relative;
+            width: 90%;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #ff4d6d;
+        }
+        .close-modal:hover {
+            color: #ffb3c6;
+        }
+        h2 {
+            color: #ffb3c6;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ff4d6d;
+            padding-bottom: 10px;
+        }
+        .reason-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .reason-item {
+            background: rgba(255,77,109,0.2);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        .playlist-item {
+            padding: 8px;
+            border-bottom: 1px solid #ff4d6d;
+        }
+        .floating-signature {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid #ff4d6d;
+            color: #ffb3c6;
+            z-index: 200;
+            backdrop-filter: blur(4px);
+        }
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #ff4d6d;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 0 30px #ff4d6d;
+        }
+        /* Quiz styles */
+        .quiz-question {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        .quiz-question p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .quiz-option {
+            display: block;
+            margin: 5px 0;
+            padding: 8px 12px;
+            background: #2a2f45;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .quiz-option:hover {
+            background: #ff4d6d;
+        }
+        .quiz-option input {
+            margin-right: 10px;
+            accent-color: #ff4d6d;
+        }
+        .quiz-submit {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 15px 0;
+        }
+        .quiz-result {
+            font-size: 1.5rem;
+            color: #ffb3c6;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
+    <canvas id="binary-bg"></canvas>
+    <div class="floating-elements" id="floatingElements"></div>
+    <div class="floating-signature">💖 Meri Jann ✨</div>
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
-<button class="toggle" onclick="toggleMode()">Day/Night</button>
-<button class="toggle music-btn" onclick="toggleMusic()">Music</button>
+    <div class="container">
+        <div class="gift-wrapper" id="giftWrapper" onclick="openGift()">
+            <div class="heart-box" id="heartBox"><div class="heart-ribbon"></div></div>
+            <div class="flower flower1">🌸</div><div class="flower flower2">🌼</div>
+            <div class="flower flower3">🌺</div><div class="flower flower4">🌹</div>
+            <div class="flower flower5">🌷</div><div class="flower flower6">🌸</div>
+            <div class="gift-message">✨ open your heart gift ✨</div>
+        </div>
 
-<div class="weather-panel">
-    <button onclick="setWeather('rain')">Rain</button>
-    <button onclick="setWeather('snow')">Snow</button>
-    <button onclick="setWeather('clear')">Clear</button>
-</div>
-
-<div class="moon"></div>
-<div class="sun"></div>
-<div class="rain"></div>
-<div class="snow" id="snow"></div>
-<div class="cloud"></div>
-
-<div class="garden"></div>
-
-<div class="house" id="house">
-    <div class="house-name">Azu Home</div>
-
-    <div class="rooms">
-        <div class="room" onclick="openRoom(event,'Living Room','Luxury sofa, Smart TV, Fireplace')">Living Room</div>
-        <div class="room" onclick="openRoom(event,'Kitchen','Modern fridge, Island table, Oven')">Kitchen</div>
-        <div class="room" onclick="openRoom(event,'Master Bedroom','King bed, Balcony, Wardrobe')">Master Bedroom</div>
-        <div class="room" onclick="openRoom(event,'Guest Room','Queen bed, Lamp')">Guest Room</div>
-        <div class="room" onclick="openRoom(event,'Kids Room','Bunk bed, Toys')">Kids Room</div>
-        <div class="room" onclick="openRoom(event,'Study Room','Desk, Laptop')">Study Room</div>
-        <div class="room" onclick="openRoom(event,'Library','Bookshelves, Reading chair')">Library</div>
-        <div class="room" onclick="openRoom(event,'Home Theater','Big screen, Surround sound')">Home Theater</div>
-        <div class="room" onclick="openRoom(event,'Gym','Treadmill, Weights')">Gym</div>
+        <div class="icons-container" id="iconsContainer">
+            <!-- New Valentine's icon first -->
+            <div class="icon-item" onclick="openModal('valentine')"><span>❤️</span><p>Valentine</p></div>
+            <!-- Remaining text-based icons -->
+            <div class="icon-item" onclick="openModal('letter')"><span>💌</span><p>Letter</p></div>
+            <div class="icon-item" onclick="openModal('reasons')"><span>💖</span><p>Reasons</p></div>
+            <div class="icon-item" onclick="openModal('promise')"><span>🤝</span><p>Promise</p></div>
+            <div class="icon-item" onclick="openModal('poem')"><span>📝</span><p>Poem</p></div>
+            <div class="icon-item" onclick="openModal('playlist')"><span>🎵</span><p>Playlist</p></div>
+            <div class="icon-item" onclick="openModal('candle')"><span>🕯️</span><p>Wish</p></div>
+            <div class="icon-item" onclick="openModal('timeline')"><span>📅</span><p>Timeline</p></div>
+            <div class="icon-item" onclick="openModal('countdown')"><span>⏳</span><p>Countdown</p></div>
+            <div class="icon-item" onclick="openModal('surprise')"><span>🎁</span><p>Hidden</p></div>
+            <div class="icon-item" onclick="openModal('openwhen')"><span>💌</span><p>Open When</p></div>
+            <div class="icon-item" onclick="openModal('quiz')"><span>❓</span><p>Quiz</p></div>
+            <div class="icon-item" onclick="openModal('constellation')"><span>✨</span><p>Stars</p></div>
+            <div class="icon-item" onclick="openModal('friend')"><span>👥</span><p>Friends</p></div>
+            <div class="icon-item" onclick="openModal('heart')"><span>❤️</span><p>Heart</p></div>
+            <div class="icon-item" onclick="openModal('signature')"><span>✍️</span><p>Note</p></div>
+            <div class="icon-item" onclick="openModal('last')"><span>💬</span><p>There is Something</p></div>
+        </div>
     </div>
-</div>
 
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h2 id="roomTitle"></h2>
-        <p id="roomDesc"></p>
-        <button class="close" onclick="closeRoom()">Close</button>
+    <!-- Modals -->
+    <!-- Valentine Modal (new) -->
+    <div class="modal" id="modal-valentine">
+        <div class="modal-card" style="text-align:center;">
+            <span class="close-modal" onclick="closeModal('valentine')">&times;</span>
+            <h2>💘 Happy Valentine's Day Meri Jan! 💘</h2>
+            <div style="font-size:6rem; animation: pulse 2s infinite;">❤️</div>
+            <p style="font-size:2rem; margin:20px 0;">For Mubashir & Fatima</p>
+            <p style="font-size:1.5rem;">You are my forever Valentine. I love you more every day. ❤️</p>
+            <style>
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.2); }
+                    100% { transform: scale(1); }
+                }
+            </style>
+        </div>
     </div>
-</div>
 
-<button class="assistant-btn" onclick="toggleAssistant()">Azu AI</button>
+    <!-- Letter Modal -->
+    <div class="modal" id="modal-letter"><div class="modal-card"><span class="close-modal" onclick="closeModal('letter')">&times;</span><h2>💌 Love Letter</h2><div class="content"><p style="font-size:1.3rem;">Meri Jan pehly Pehly to Yahiii kahonga k Janan Din Mubarak Ho meri jan,<br>Tum smjh sktiii ho how can i feel for you,<br>Tum mery liye sab sy brh k Ho,<br>Is Special Din k moqay pr m yahi kahonga K Allah tumhain Khusian day,<br>Allah tumhain Hamesha mery sath Rkhy,<br>M janta hn tum kis qdr zrori ho mery liye i love you meri jan</p><p>Hey jan,<br><br>You're the melody that fills my heart with joy, the rhythm that makes life worth living. Every moment with you is a sweet serendipity, a reminder that I'm exactly where I'm meant to be.<br><br>Thanks for being my partner in crime, my confidant, and my forever crush 😊<br><br>Happy Valentine's Day, my love!</p></div></div></div>
 
-<div class="assistant-box" id="assistant">
-    <h3>Azu Assistant</h3>
-    <input id="aiInput" placeholder="Ask something..." style="width:100%;">
-    <button onclick="aiReply()">Ask</button>
-    <p id="aiResponse"></p>
-</div>
+    <!-- Reasons Modal -->
+    <div class="modal" id="modal-reasons"><div class="modal-card"><span class="close-modal" onclick="closeModal('reasons')">&times;</span><h2>💖 25 Reasons</h2><div class="reason-list" id="reasonsList"></div></div></div>
 
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=relaxing-145038.mp3" type="audio/mpeg">
-</audio>
+    <!-- Promise Modal -->
+    <div class="modal" id="modal-promise"><div class="modal-card"><span class="close-modal" onclick="closeModal('promise')">&times;</span><h2>🤝 Promise</h2><div class="content"><p style="font-size:1.8rem;">"Halat jaisy bhi ho jain meri jan M kabhi niii chor skta tumhain,<br>M wada krta hn hamesha tumhara muntazir rahonga"<br><br><span style="font-size:2rem;">" Tumhara Mubashir "</span></p></div></div></div>
 
-<script>
-function toggleMode(){
-    document.body.classList.toggle("day");
-}
+    <!-- Poem Modal -->
+    <div class="modal" id="modal-poem"><div class="modal-card"><span class="close-modal" onclick="closeModal('poem')">&times;</span><h2>📝 Poem</h2><div class="content" style="font-size:1.3rem; line-height:2;">تم آئی تو خاموشی نے بھی آواز دی<br>ہر سانس نے اک نیا انداز دیا<br><br>تم ہنسی تو پھول کھلے راستوں میں<br>تم چلی تو خوشبو نے تعاقب کیا<br><br>یہ دن کہ جب تم نے پہلی بار سانس لیا<br>آسمان نے بھی جشن منایا ہوگا<br><br>آج بھی تم ویسی ہو نرم روشن<br>جیسے صبح کی پہلی کرن<br><br>مبارک ہو میری جان<br>تم ہو تو میں ہوں<br>تم ہو تو سب ہے</div></div></div>
 
-function toggleMusic(){
-    const music=document.getElementById("bgMusic");
-    music.paused?music.play():music.pause();
-}
+    <!-- Playlist Modal -->
+    <div class="modal" id="modal-playlist"><div class="modal-card"><span class="close-modal" onclick="closeModal('playlist')">&times;</span><h2>🎵 Playlist</h2><div id="playlistItems"></div></div></div>
 
-function setWeather(type){
-    const rain=document.querySelector('.rain');
-    const snow=document.getElementById('snow');
+    <!-- Wish Candle Modal -->
+    <div class="modal" id="modal-candle"><div class="modal-card" style="text-align:center;"><span class="close-modal" onclick="closeModal('candle')">&times;</span><h2>🕯️ Wish</h2><div class="candle" onclick="blowCandle(this)" style="font-size:6rem; cursor:pointer;">🕯️</div><div id="wishMessage" style="font-size:2rem; margin-top:20px; color:#ffb3c6;"></div></div></div>
 
-    if(type==='rain'){
-        rain.style.display="block";
-        snow.style.display="none";
-    }else if(type==='snow'){
-        rain.style.display="none";
-        snow.style.display="block";
-    }else{
-        rain.style.display="none";
-        snow.style.display="none";
-    }
-}
+    <!-- Timeline Modal -->
+    <div class="modal" id="modal-timeline"><div class="modal-card"><span class="close-modal" onclick="closeModal('timeline')">&times;</span><h2>📅 Timeline</h2><div class="content"><p><strong>💙 TikTok Pe Mulaqat</strong> – Credit TikTok, maine comment kiya</p><p><strong>📞 Pehli Call</strong> – Sunday, awaaz dil mein utar gayi</p><p><strong>🤝 Pehli Mulaqat</strong> – Monday, dil kho gaya</p><p><strong>💕 Pehli Baar "Meri Jan"</strong> – Woh surprised hui, pasand aaya</p><p><strong>🏨 Indus Hotel</strong> – Woh pal kabhi nahi bhool sakte</p></div></div></div>
 
-function openRoom(e,title,desc){
-    document.querySelectorAll(".room").forEach(r=>r.classList.remove("active"));
-    e.currentTarget.classList.add("active");
+    <!-- Countdown Modal -->
+    <div class="modal" id="modal-countdown"><div class="modal-card"><span class="close-modal" onclick="closeModal('countdown')">&times;</span><h2>⏳ Countdown</h2><div class="content" style="text-align:center;"><div style="font-size:2rem;" id="countdownDisplay"></div><p style="margin-top:20px;">4 March 2004 ❤️</p></div></div></div>
 
-    document.getElementById("roomTitle").innerText=title;
-    document.getElementById("roomDesc").innerText=desc;
+    <!-- Hidden Surprise Modal -->
+    <div class="modal" id="modal-surprise"><div class="modal-card"><span class="close-modal" onclick="closeModal('surprise')">&times;</span><h2>🎁 Hidden Surprise</h2><div class="content" style="text-align:center; font-size:1.8rem;"><p>Mubashir is always here for you Meri Jan ,I love you Mubashir diiii jan</p></div></div></div>
 
-    const modal=document.getElementById("modal");
-    modal.style.display="flex";
-    setTimeout(()=>modal.classList.add("show"),10);
-}
+    <!-- Open When Modal -->
+    <div class="modal" id="modal-openwhen"><div class="modal-card"><span class="close-modal" onclick="closeModal('openwhen')">&times;</span><h2>💌 Open When...</h2><div id="openWhenList"></div></div></div>
 
-function closeRoom(){
-    const modal=document.getElementById("modal");
-    modal.classList.remove("show");
-    setTimeout(()=>modal.style.display="none",300);
-}
+    <!-- Quiz Modal -->
+    <div class="modal" id="modal-quiz"><div class="modal-card"><span class="close-modal" onclick="closeModal('quiz')">&times;</span><h2>❓ How well do you know Mubashir?</h2><div id="quizContainer"></div></div></div>
 
-function toggleAssistant(){
-    const box=document.getElementById("assistant");
-    box.style.display=box.style.display==="block"?"none":"block";
-}
+    <!-- Stars Modal -->
+    <div class="modal" id="modal-constellation"><div class="modal-card"><span class="close-modal" onclick="closeModal('constellation')">&times;</span><h2>✨ Stars</h2><canvas id="constellationCanvas" width="400" height="200" style="width:100%; background:#000; border-radius:20px;"></canvas><p style="text-align:center; margin-top:10px;">6 June 2004</p></div></div>
 
-function aiReply(){
-    const input=document.getElementById("aiInput").value.toLowerCase();
-    const response=document.getElementById("aiResponse");
+    <!-- Friends Modal -->
+    <div class="modal" id="modal-friend"><div class="modal-card"><span class="close-modal" onclick="closeModal('friend')">&times;</span><h2>👥 Friends</h2><div class="content" style="text-align:center; font-size:2rem;"><p>🤝 I am your Forever friend 🤝</p><p style="font-size:1.2rem; margin-top:20px;">Always and forever, no matter what.</p></div></div></div>
 
-    if(input.includes("weather")){
-        response.innerText="Use the weather buttons at top right!";
-    }else if(input.includes("rooms")){
-        response.innerText="There are 9 luxury rooms available.";
-    }else if(input.includes("music")){
-        response.innerText="Press the Music button at top left.";
-    }else{
-        response.innerText="Welcome to Azu Home!";
-    }
-}
+    <!-- Heart Modal -->
+    <div class="modal" id="modal-heart"><div class="modal-card"><span class="close-modal" onclick="closeModal('heart')">&times;</span><h2>❤️ Heart</h2><div class="content" style="font-size:2rem; text-align:center;"><p>I ❤️ U Meri Fatima</p></div></div></div>
 
-/* 3D Tilt */
-const house=document.getElementById("house");
-document.addEventListener("mousemove",e=>{
-    let x=(window.innerWidth/2 - e.pageX)/40;
-    let y=(window.innerHeight/2 - e.pageY)/40;
-    house.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
-});
-</script>
-
-</body>
-</html>
+    <!-- Note Modal -->
+    <div class="modal" id="modal-signature"><div class="modal-car
