@@ -79,6 +79,8 @@
             font-weight: bold;
             min-width: 150px;
             position: absolute;
+            pointer-events: auto; /* ensure clickable */
+            z-index: 10001;
         }
 
         .btn-yes {
@@ -617,4 +619,307 @@
         <!-- All modals (unchanged) -->
         <!-- Valentine Modal -->
         <div class="modal" id="modal-valentine">
-            <div class="modal-ca
+            <div class="modal-card" style="text-align:center;">
+                <span class="close-modal" onclick="closeModal('valentine')">&times;</span>
+                <h2>💘 Happy Valentines day shezadii Meri Jan 💘</h2>
+                <div class="pulse-heart" style="font-size:8rem;">❤️</div>
+                <p style="font-size:2rem; margin:20px 0;">I love you more every day. ❤️</p>
+            </div>
+        </div>
+
+        <!-- Letter Modal -->
+        <div class="modal" id="modal-letter">
+            <div class="modal-card">
+                <span class="close-modal" onclick="closeModal('letter')">&times;</span>
+                <h2>💌 Love Letter</h2>
+                <div class="content" style="font-size:1.3rem;">
+                    <p>Meri Jan pehly Pehly to Yahiii kahonga k Valentine day Mubarak Ho meri shezadii,<br>
+                    Tum smjh sktiii ho how can i feel for you,<br>
+                    Tum mery liye sab sy brh k Ho,<br>
+                    Is Special Din k moqay pr m yahi kahonga K Allah tumhain Khusian day,<br>
+                    Allah tumhain Hamesha mery sath Rkhy,<br>
+                    M janta hn tum kis qdr zrori ho mery liye i love you meri jan</p>
+                    <p>Hey jan,<br><br>
+                    You're the melody that fills my heart with joy, the rhythm that makes life worth living. Every moment with you is a sweet serendipity, a reminder that I'm exactly where I'm meant to be.<br><br>
+                    Thanks for being my partner in crime, my confidant, and my forever crush 😊<br><br>
+                    Happy Valentine's Day, my love!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reasons Modal -->
+        <div class="modal" id="modal-reasons"><div class="modal-card"><span class="close-modal" onclick="closeModal('reasons')">&times;</span><h2>💖 25 Reasons</h2><div class="reason-list" id="reasonsList"></div></div></div>
+
+        <!-- Promise Modal -->
+        <div class="modal" id="modal-promise"><div class="modal-card"><span class="close-modal" onclick="closeModal('promise')">&times;</span><h2>🤝 Promise</h2><div class="content"><p style="font-size:1.8rem;">"Halat jaisy bhi ho jain meri jan M kabhi niii chor skta tumhain,<br>M wada krta hn hamesha tumhara muntazir rahonga"<br><br><span style="font-size:2rem;">" Tumhara Mubashir "</span></p></div></div></div>
+
+        <!-- Poem Modal -->
+        <div class="modal" id="modal-poem"><div class="modal-card"><span class="close-modal" onclick="closeModal('poem')">&times;</span><h2>📝 Poem</h2><div class="content" style="font-size:1.3rem; line-height:2;">تم آئی تو خاموشی نے بھی آواز دی<br>ہر سانس نے اک نیا انداز دیا<br><br>تم ہنسی تو پھول کھلے راستوں میں<br>تم چلی تو خوشبو نے تعاقب کیا<br><br>یہ دن کہ جب تم نے پہلی بار سانس لیا<br>آسمان نے بھی جشن منایا ہوگا<br><br>آج بھی تم ویسی ہو نرم روشن<br>جیسے صبح کی پہلی کرن<br><br>مبارک ہو میری جان<br>تم ہو تو میں ہوں<br>تم ہو تو سب ہے</div></div></div>
+
+        <!-- Playlist Modal -->
+        <div class="modal" id="modal-playlist"><div class="modal-card"><span class="close-modal" onclick="closeModal('playlist')">&times;</span><h2>🎵 Playlist</h2><div id="playlistItems"></div></div></div>
+
+        <!-- Wish Candle Modal -->
+        <div class="modal" id="modal-candle"><div class="modal-card" style="text-align:center;"><span class="close-modal" onclick="closeModal('candle')">&times;</span><h2>🕯️ Wish</h2><div class="candle" onclick="blowCandle(this)" style="font-size:6rem; cursor:pointer;">🕯️</div><div id="wishMessage" style="font-size:2rem; margin-top:20px; color:#ffe9f4;"></div></div></div>
+
+        <!-- Hidden Surprise Modal -->
+        <div class="modal" id="modal-surprise"><div class="modal-card"><span class="close-modal" onclick="closeModal('surprise')">&times;</span><h2>🎁 Hidden Surprise</h2><div class="content" style="text-align:center; font-size:1.8rem;"><p>Mubashir is always here for you Meri Jan ,I love you Mubashir diiii jan</p></div></div></div>
+
+        <!-- Open When Modal -->
+        <div class="modal" id="modal-openwhen"><div class="modal-card"><span class="close-modal" onclick="closeModal('openwhen')">&times;</span><h2>💌 Open When...</h2><div id="openWhenList"></div></div></div>
+
+        <!-- Quiz Modal (with birthday question) -->
+        <div class="modal" id="modal-quiz"><div class="modal-card"><span class="close-modal" onclick="closeModal('quiz')">&times;</span><h2>❓ How well do you know Mubashir?</h2><div id="quizContainer"></div></div></div>
+
+        <!-- Stars Modal -->
+        <div class="modal" id="modal-constellation"><div class="modal-card"><span class="close-modal" onclick="closeModal('constellation')">&times;</span><h2>✨ Stars</h2><canvas id="constellationCanvas" width="400" height="200" style="width:100%; background:#2b1a2e; border-radius:20px; border:2px solid #ff99bb;"></canvas><p style="text-align:center; margin-top:10px;">6 June 2004</p></div></div>
+
+        <!-- Friends Modal -->
+        <div class="modal" id="modal-friend"><div class="modal-card"><span class="close-modal" onclick="closeModal('friend')">&times;</span><h2>👥 Friends</h2><div class="content" style="text-align:center; font-size:2rem;"><p>🤝 I am your Forever friend 🤝</p><p style="font-size:1.2rem; margin-top:20px;">Always and forever, no matter what.</p></div></div></div>
+
+        <!-- Heart Modal -->
+        <div class="modal" id="modal-heart"><div class="modal-card"><span class="close-modal" onclick="closeModal('heart')">&times;</span><h2>❤️ Heart</h2><div class="content" style="font-size:2.5rem; text-align:center;"><p>I ❤️ U Meri Fatima</p></div></div></div>
+
+        <!-- Note Modal -->
+        <div class="modal" id="modal-signature"><div class="modal-card"><span class="close-modal" onclick="closeModal('signature')">&times;</span><h2>✍️ Note</h2><div class="content" style="font-size:2rem; text-align:center;">I Love Meri Jann 😘</div></div></div>
+    </div>
+
+    <script>
+        // ========== PRE-GIFT QUESTION LOGIC ==========
+        const overlay = document.getElementById('questionOverlay');
+        const mainContent = document.getElementById('mainContent');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionBox = document.getElementById('questionBox');
+
+        // Function to move the "No" button to a random position within the question box
+        function moveNoButton() {
+            const boxRect = questionBox.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            
+            // Calculate safe boundaries so button stays fully inside the box
+            const maxX = boxRect.width - btnRect.width - 20;
+            const maxY = boxRect.height - btnRect.height - 20;
+            
+            // Generate random coordinates within the box
+            const newX = Math.max(10, Math.min(maxX, Math.random() * maxX));
+            const newY = Math.max(10, Math.min(maxY, Math.random() * maxY));
+            
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            noBtn.style.right = 'auto';
+            noBtn.style.transform = 'none';
+        }
+
+        // Move on hover (mouseenter) or click
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        // Yes button reveals main content
+        yesBtn.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            mainContent.style.display = 'block';
+            createGarden(); // initialize floating garden
+        });
+
+        // ========== BINARY BACKGROUND ==========
+        const canvas = document.getElementById('binary-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const binary = '01';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+        function drawBinary() {
+            ctx.fillStyle = 'rgba(43,26,46,0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ff99bb';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                let text = binary[Math.floor(Math.random() * binary.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawBinary, 50);
+
+        // ========== FLOATING GARDEN ==========
+        function createGarden() {
+            const garden = document.getElementById('floatingGarden');
+            if (!garden) return;
+            garden.innerHTML = '';
+            const flowers = ['🌸', '🌼', '🌺', '🌹', '🌷', '🌸', '🌻', '🌞', '💐', '🌸'];
+            for (let i = 0; i < 50; i++) {
+                const el = document.createElement('div');
+                const isFlower = Math.random() > 0.3;
+                el.className = isFlower ? 'flower' : 'petal';
+                el.textContent = isFlower ? flowers[Math.floor(Math.random() * flowers.length)] : '🌱';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDelay = Math.random() * 15 + 's';
+                el.style.animationDuration = (15 + Math.random() * 20) + 's';
+                el.style.fontSize = (1.5 + Math.random() * 2) + 'rem';
+                garden.appendChild(el);
+            }
+        }
+
+        // ========== MUSIC ==========
+        let music = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        music.loop = true;
+        function toggleMusic() {
+            if (music.paused) { music.play(); document.getElementById('musicBtn').innerHTML = '⏸️'; }
+            else { music.pause(); document.getElementById('musicBtn').innerHTML = '🎵'; }
+        }
+
+        // ========== OPEN GIFT ==========
+        function openGift() {
+            const wrapper = document.getElementById('giftWrapper');
+            if (!wrapper) return;
+            wrapper.classList.add('open');
+            setTimeout(() => {
+                wrapper.style.display = 'none';
+                document.getElementById('iconsContainer').style.display = 'flex';
+                loadReasons();
+                loadPlaylist();
+                loadOpenWhen();
+                loadQuiz();
+                drawConstellationCanvas();
+            }, 800);
+        }
+
+        // ========== MODAL FUNCTIONS ==========
+        function openModal(id) {
+            document.getElementById('modal-' + id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById('modal-' + id).style.display = 'none';
+        }
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+        };
+
+        // ========== DYNAMIC CONTENT ==========
+        function loadReasons() {
+            const list = document.getElementById('reasonsList');
+            if (!list) return;
+            const reasons = [
+                'Your smile that lights up my world', 'The way you laugh — pure magic',
+                'Your eyes — I get lost in them', 'Your voice — it calms me down',
+                'The way you say "Meri Jan"', 'You understand me without words',
+                'You make ordinary days special', 'You believe in me when I doubt',
+                'You feel like home', 'You complete me', 'The way you get shy',
+                'Your random texts that make my day', 'How you care about small things',
+                'Your stubbornness (I secretly love it)', 'The way you say my name',
+                'You accepted me for who I am', 'You\'re my peace in chaos',
+                'My first thought in the morning', 'My last thought at night',
+                'You made me believe in love', 'Your eyes sparkle when happy',
+                'You know when something is wrong', 'The sounds you make when excited',
+                'Your hugs — they fix everything', 'You exist. That\'s enough.'
+            ];
+            list.innerHTML = '';
+            reasons.forEach((r, i) => {
+                let div = document.createElement('div');
+                div.className = 'reason-item';
+                div.textContent = `${i+1}. ${r}`;
+                list.appendChild(div);
+            });
+        }
+
+        function loadPlaylist() {
+            const cont = document.getElementById('playlistItems');
+            if (!cont) return;
+            cont.innerHTML = '';
+            const songs = ['Ishq Mubarak - Arijit Singh', 'Tum Hi Ho - Arijit Singh', 'Raabta - Arikit Singh', 'Humsafar - Akhil Sachdeva', 'Tera Zikr - Darshan Raval'];
+            songs.forEach((s, i) => {
+                let div = document.createElement('div');
+                div.className = 'playlist-item';
+                div.textContent = `${i+1}. ${s}`;
+                cont.appendChild(div);
+            });
+        }
+
+        function loadOpenWhen() {
+            const cont = document.getElementById('openWhenList');
+            if (!cont) return;
+            cont.innerHTML = '';
+            const letters = [
+                '💕 Open When You Miss Me: I miss you too... sending a hug.',
+                '🥺 Open When You\'re Sad: Wipe those tears, I\'m here.',
+                '😊 Open When You\'re Happy: Keep smiling forever.',
+                '🌙 Open When You Can\'t Sleep: Imagine my arms around you.',
+                '🫂 Open When You\'re Angry At Me: Let\'s talk, I love you.',
+                '💖 Open When You Need to Feel Loved: You are my everything.'
+            ];
+            letters.forEach(l => {
+                let p = document.createElement('p');
+                p.textContent = l;
+                p.style.margin = '10px 0';
+                cont.appendChild(p);
+            });
+        }
+
+        // ========== QUIZ (with birthday question) ==========
+        const quizQuestions = [
+            { question: "What is my favourite colour?", options: ["Black", "Blue", "Red", "White"], answer: 0 },
+            { question: "What day of the week did we first meet?", options: ["Monday", "Tuesday", "Friday", "Sunday"], answer: 0 },
+            { question: "What is our special place?", options: ["Indus Hotel", "Beach", "Park", "Restaurant"], answer: 0 },
+            { question: "When is my birthday?", options: ["05 April 2005", "6 June 2004", "4 March 2005", "05 April 2004"], answer: 0 },
+            { question: "What do I always say to you?", options: ["I love you", "Meri Jan", "Take care", "Miss you"], answer: 0 },
+            { question: "What was the first thing I noticed about you?", options: ["Your smile", "Your eyes", "Your voice", "Your personality"], answer: 1 }
+        ];
+
+        function loadQuiz() {
+            const container = document.getElementById('quizContainer');
+            if (!container) return;
+            let html = '<form id="quizForm">';
+            quizQuestions.forEach((q, idx) => {
+                html += `<div class="quiz-question"><p>${idx+1}. ${q.question}</p>`;
+                q.options.forEach((opt, optIdx) => {
+                    html += `<label class="quiz-option"><input type="radio" name="q${idx}" value="${optIdx}"> ${opt}</label>`;
+                });
+                html += '</div>';
+            });
+            html += '</form><button class="quiz-submit" onclick="submitQuiz()">Submit Answers</button><div id="quizResult" class="quiz-result"></div>';
+            container.innerHTML = html;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            for (let i = 0; i < quizQuestions.length; i++) {
+                const radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked && j == quizQuestions[i].answer) {
+                        score++;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('quizResult').innerHTML = `You got ${score} out of ${quizQuestions.length} correct! ❤️`;
+        }
+
+        function drawConstellationCanvas() {
+            const c = document.getElementById('constellationCanvas');
+            if (!c) return;
+            const ctx = c.getContext('2d');
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctx.fillStyle = 'white';
+            for (let i = 0; i < 50; i++) ctx.fillRect(Math.random() * c.width, Math.random() * c.height, 2, 2);
+            ctx.strokeStyle = '#ff99bb';
+            ctx.beginPath();
+            ctx.moveTo(200, 50);
+            ctx.quadraticCurveTo(300, 150, 200, 150);
+            ctx.stroke();
+        }
+
+        function blowCandle(el) {
+            el.innerHTML = '💨';
+            document.getElementById('wishMessage').innerHTML = 'Allah tumhain Hamesha Khusian day Meri Jan ✨';
+        }
+    </script>
+</body>
+</html>
